@@ -52,7 +52,7 @@ typedef void(^ASImageFileCallBack)(BOOL,NSString *);
 
 - (NSArray *)aliasByPic:(NSString *)fileName{
     NSMutableArray * usingNames = [NSMutableArray array];
-    NSString * usingName0 = fileName;
+//    NSString * usingName0 = fileName;
 //    [usingNames addObject:usingName0];
     NSMutableArray * nameParts = [[fileName componentsSeparatedByString:@"."] mutableCopy];
     NSString * suffix = @"";
@@ -69,6 +69,22 @@ typedef void(^ASImageFileCallBack)(BOOL,NSString *);
         [usingNames addObject:usingName2];
         NSString * usingName3 = [NSString stringWithFormat:@"%@.%@",usingName2,suffix];
         [usingNames addObject:usingName3];
+        
+        static NSRegularExpression *reg = nil;
+        if (!reg) {
+            reg = [NSRegularExpression regularExpressionWithPattern:@"\\d+$" options:0 error:nil];
+        }
+        NSArray<NSTextCheckingResult *> *results = [reg matchesInString:usingName2 options:0 range:NSMakeRange(0, usingName2.length)];
+        if (results.lastObject) {
+            NSString *usingName4 = [usingName2 substringToIndex:results.lastObject.range.location];
+            [usingNames addObject:usingName4];
+            
+            [usingNames addObject:[usingName4 stringByAppendingString:@"%@"]];
+            [usingNames addObject:[usingName4 stringByAppendingString:@"%d"]];
+            [usingNames addObject:[usingName4 stringByAppendingString:@"%zd"]];
+            [usingNames addObject:[usingName4 stringByAppendingString:@"%ld"]];
+            [usingNames addObject:[usingName4 stringByAppendingString:@"%lld"]];
+        }
     }
     if ([fileName containsString:@"/"]) {
         [usingNames addObjectsFromArray: [self aliasByPic:[fileName lastPathComponent]]];

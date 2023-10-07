@@ -137,7 +137,7 @@ public class DiagnoseDataManager: NSObject {
             return 0.0
         }
         let unusedRes: [ASBaseFile] = ASFileManager.checkUnusedAssetsOfBundle(byDefault: bundleData)
-        if unusedRes.count == 0 {
+        if unusedRes.isEmpty {
             return 0.0
         }
         var modelList = [DiagnoseModel]()
@@ -293,11 +293,10 @@ public class DiagnoseDataManager: NSObject {
 //        }
         var stripList = [DiagnoseModel]()
         var totalSize:CGFloat = 0.00
-        var dupResList  = [Array<String>]()
-        for (key,value) in dupDic {
+        var dupResList: [[String]] = .init()
+        for (_,value) in dupDic {
             var resName: String = ""
-            let resList = value as? Array<ASBaseFile>
-            guard let resList = resList else {
+            guard let resList = value as? [ASBaseFile] else {
                 continue
             }
             var filePaths = [String]()

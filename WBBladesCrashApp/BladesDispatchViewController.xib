@@ -13,7 +13,6 @@
                 <outlet property="crashParseBtn" destination="iEe-c1-sKv" id="ey3-fQ-SK6"/>
                 <outlet property="diagnoseBtn" destination="3ao-71-6Bk" id="Jrf-Jj-RS8"/>
                 <outlet property="functionLabel" destination="RIe-e0-Ihv" id="cSl-VH-h4f"/>
-                <outlet property="githubStar" destination="iSK-xL-d7c" id="hks-Zr-74Z"/>
                 <outlet property="githubStarBtn" destination="iSK-xL-d7c" id="2oa-OO-X3r"/>
                 <outlet property="intelligentBtn" destination="Wz4-3k-8v6" id="KHq-Nt-h0M"/>
                 <outlet property="introduceTextView" destination="R0V-Ex-dVK" id="avp-ac-q7b"/>
