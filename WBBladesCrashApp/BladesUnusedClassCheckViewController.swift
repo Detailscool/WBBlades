@@ -84,12 +84,9 @@ class BladesUnusedClassCheckViewController: NSViewController {
                 var allUnusedClsStr = ""
                 var unusedCount = 0
                 for dict in self.unUsedClassResultSet {
-                    for (key ,_) in dict {
-                        allUnusedClsStr += "\(key)"
-                        allUnusedClsStr += "\n"
-                    }
+                    allUnusedClsStr += dict.keys.sorted(by: <).joined(separator: "\n")
                     unusedCount += dict.count
-                    allUnusedClsStr += "\n"
+                    allUnusedClsStr += "\n\n"
                 }
                                                 
                 if TextDictionary.mode == Language.chinese {
